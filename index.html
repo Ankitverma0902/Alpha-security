@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self' https://cdn.tailwindcss.com https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js 'unsafe-inline'; 
+        style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; 
+        font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
+        connect-src 'self';
+        img-src 'self' https://placehold.co;
+        frame-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+
+    <title>Alpha Security - Elite Cybersecurity Solutions</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Moved particles.js script to head to ensure it loads before DOMContentLoaded -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" integrity="sha256-R2pY3y2nLp/lGk9yIHEfQ2H52iI3qD1n/m0jVn3u/1I=" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a1a;
+            color: #e0e0e0;
+        }
+        .glass-effect {
+            background: rgba(16, 16, 32, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-bg {
+            position: relative;
+            background-color: #0a0a1a;
+            overflow: hidden;
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .service-card, .team-card, .testimonial-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover, .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 191, 255, 0.1), 0 10px 10px -5px rgba(0, 191, 255, 0.04);
+        }
+        .glow-button {
+            box-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
+            transition: all 0.3s ease-in-out;
+        }
+        .glow-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
+            background-color: #00a8e6; /* Brighter cyan on hover */
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .typing-cursor {
+            border-right: .15em solid #00bfff;
+            animation: blink-caret .75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00bfff; }
+        }
+        /* Custom scrollbar for slider */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white flex items-center">
+                <i class="fas fa-shield-halved text-cyan-400 mr-2"></i>
+                Alpha Security
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#services" class="text-gray-300 hover:text-cyan-400 transition">Services</a>
+                <a href="#why-us" class="text-gray-300 hover:text-cyan-400 transition">Why Us</a>
+                <a href="#team" class="text-gray-300 hover:text-cyan-400 transition">Team</a>
+                <a href="#testimonials" class="text-gray-300 hover:text-cyan-400 transition">Testimonials</a>
+                <a href="#contact" class="text-gray-300 hover:text-cyan-400 transition">Contact</a>
+            </div>
+            <a href="#contact" class="hidden md:block bg-cyan-500 text-white font-bold py-2 px-6 rounded-lg transition glow-button">Get a Quote</a>
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-effect">
+            <a href="#services" class="block py-2 px-4 text-sm text-gray-200 hover:bg-cyan-500/20">Services</a>
+            <a href="#why-us" class="block py-2 px-4 text-sm text-gray-200 hover:bg-cyan-500/20">Why Us</a>
+            <a href="#team" class="block py-2 px-4 text-sm text-gray-200 hover:bg-cyan-500/20">Team</a>
+            <a href="#testimonials" class="block py-2 px-4 text-sm text-gray-200 hover:bg-cyan-500/20">Testimonials</a>
+            <a href="#contact" class="block py-2 px-4 text-sm text-gray-200 hover:bg-cyan-500/20">Contact</a>
+            <a href="#contact" class="block py-3 px-4 text-sm bg-cyan-500 text-white text-center font-bold">Get a Quote</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center pt-20">
+        <div id="particles-js"></div>
+        <div class="hero-content container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-4 leading-tight">
+                Fortifying Your Digital<br>
+                <span id="typing-effect" class="text-cyan-400"></span><span class="typing-cursor"></span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                Proactive, intelligence-driven cybersecurity services to protect your critical assets from emerging threats.
+            </p>
+            <a href="#services" class="bg-cyan-500 text-white font-bold py-4 px-10 rounded-lg text-lg transition glow-button">Explore Our Services</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Our Security Services</h2>
+                <p class="text-gray-400 mt-2">Comprehensive solutions to identify and mitigate your security risks.</p>
+                <div class="w-24 h-1 bg-cyan-400 mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Cards -->
+                <div class="service-card glass-effect rounded-lg p-8 text-center fade-in">
+                    <div class="text-5xl text-cyan-400 mb-4"><i class="fas fa-laptop-code"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Web Application Pentesting</h3>
+                    <p class="text-gray-400">In-depth testing to uncover vulnerabilities like SQLi, XSS, and more in your web apps.</p>
+                </div>
+                <div class="service-card glass-effect rounded-lg p-8 text-center fade-in" style="transition-delay: 100ms;">
+                    <div class="text-5xl text-cyan-400 mb-4"><i class="fas fa-network-wired"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Network Vulnerability Assessment</h3>
+                    <p class="text-gray-400">Identify and remediate security weaknesses in your internal and external network infrastructure.</p>
+                </div>
+                <div class="service-card glass-effect rounded-lg p-8 text-center fade-in" style="transition-delay: 200ms;">
+                    <div class="text-5xl text-cyan-400 mb-4"><i class="fas fa-cogs"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">API Security Testing</h3>
+                    <p class="text-gray-400">Secure your APIs by identifying authentication, authorization, and data exposure flaws.</p>
+                </div>
+                <div class="service-card glass-effect rounded-lg p-8 text-center fade-in" style="transition-delay: 300ms;">
+                    <div class="text-5xl text-cyan-400 mb-4"><i class="fas fa-mobile-alt"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Mobile App Pentesting</h3>
+                    <p class="text-gray-400">Assess the security of your iOS and Android applications to protect user data.</p>
+                </div>
+                <div class="service-card glass-effect rounded-lg p-8 text-center fade-in" style="transition-delay: 400ms;">
+                    <div class="text-5xl text-cyan-400 mb-4"><i class="fas fa-cloud"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Cloud Security Assessment</h3>
+                    <p class="text-gray-400">Evaluate your AWS, Azure, or GCP configurations for misconfigurations and vulnerabilities.</p>
+                </div>
+                <div class="service-card glass-effect rounded-lg p-8 text-center fade-in" style="transition-delay: 500ms;">
+                    <div class="text-5xl text-cyan-400 mb-4"><i class="fas fa-user-secret"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Red Teaming / Social Engineering</h3>
+                    <p class="text-gray-400">Simulate real-world attacks to test your organization's detection and response capabilities.</p>
+                </div>
+                 <div class="service-card glass-effect rounded-lg p-8 text-center fade-in md:col-span-2 lg:col-span-1 lg:col-start-2" style="transition-delay: 600ms;">
+                    <div class="text-5xl text-cyan-400 mb-4"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Security Awareness Training</h3>
+                    <p class="text-gray-400">Empower your employees to recognize and respond to phishing and other social engineering tactics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section id="why-us" class="py-20 bg-black bg-opacity-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Why Partner With Alpha Security?</h2>
+                <p class="text-gray-400 mt-2">We deliver more than just reports. We provide actionable intelligence.</p>
+                <div class="w-24 h-1 bg-cyan-400 mx-auto mt-4"></div>
+            </div>
+            <div class="flex flex-wrap items-center">
+                <div class="w-full md:w-1/2 px-4 fade-in">
+                    <img src="https://placehold.co/600x400/0a0a1a/00bfff?text=Security+Operations" alt="Cybersecurity experts in a command center" class="rounded-lg shadow-2xl">
+                </div>
+                <div class="w-full md:w-1/2 px-4 mt-8 md:mt-0 fade-in" style="transition-delay: 200ms;">
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="text-2xl text-cyan-400 mr-4 pt-1"><i class="fas fa-user-shield"></i></div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Expert-Led Teams</h4>
+                                <p class="text-gray-400">Our testers are certified professionals with deep experience in offensive security.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-2xl text-cyan-400 mr-4 pt-1"><i class="fas fa-file-alt"></i></div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Actionable Reporting</h4>
+                                <p class="text-gray-400">We provide clear, concise reports with prioritized, step-by-step remediation guidance.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-2xl text-cyan-400 mr-4 pt-1"><i class="fas fa-sync-alt"></i></div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Continuous Partnership</h4>
+                                <p class="text-gray-400">We work with you post-assessment to ensure vulnerabilities are effectively resolved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Meet Our Security Experts</h2>
+                <p class="text-gray-400 mt-2">The architects of your digital defense.</p>
+                <div class="w-24 h-1 bg-cyan-400 mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-center gap-8 lg:gap-16">
+                <!-- Team Member 1 -->
+                <div class="team-card glass-effect rounded-lg p-6 text-center fade-in lg:w-1/3">
+                    <img class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-cyan-400" src="https://placehold.co/200x200/1a1a2e/e0e0e0?text=AS" alt="Team Member 1" onerror="this.onerror=null;this.src='https://placehold.co/200x200/1a1a2e/e0e0e0?text=AS';">
+                    <h3 class="text-xl font-bold text-white">Alex "Hex" Carter</h3>
+                    <p class="text-cyan-400">Lead Penetration Tester</p>
+                    <div class="flex justify-center space-x-4 mt-4 text-gray-400">
+                        <a href="#" class="hover:text-cyan-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-cyan-400"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="team-card glass-effect rounded-lg p-6 text-center fade-in lg:w-1/3" style="transition-delay: 200ms;">
+                    <img class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-cyan-400" src="https://placehold.co/200x200/1a1a2e/e0e0e0?text=AS" alt="Team Member 2" onerror="this.onerror=null;this.src='https://placehold.co/200x200/1a1a2e/e0e0e0?text=AS';">
+                    <h3 class="text-xl font-bold text-white">Jada "Glitch" Lee</h3>
+                    <p class="text-cyan-400">Cloud Security Specialist</p>
+                    <div class="flex justify-center space-x-4 mt-4 text-gray-400">
+                        <a href="#" class="hover:text-cyan-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-cyan-400"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-black bg-opacity-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">What Our Clients Say</h2>
+                <p class="text-gray-400 mt-2">Real feedback from businesses we've secured.</p>
+                <div class="w-24 h-1 bg-cyan-400 mx-auto mt-4"></div>
+            </div>
+            <div class="relative fade-in">
+                <!-- Slider Controls -->
+                <div class="absolute inset-y-0 left-0 z-10 flex items-center">
+                    <button id="prev-testimonial" class="bg-gray-800/50 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-cyan-500/50 transition -ml-5 shadow-lg">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                </div>
+                <div class="absolute inset-y-0 right-0 z-10 flex items-center">
+                    <button id="next-testimonial" class="bg-gray-800/50 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-cyan-500/50 transition -mr-5 shadow-lg">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <!-- Slider Container -->
+                <div id="testimonial-slider" class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-8 pb-4 no-scrollbar">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card glass-effect rounded-lg p-8 flex-shrink-0 w-full md:w-[48%] snap-start">
+                        <i class="fas fa-quote-left text-cyan-400 text-2xl mb-4"></i>
+                        <p class="text-gray-300 mb-6">"Alpha Security's pentest was incredibly thorough. They found critical issues we didn't know we had and provided a clear, actionable roadmap to fix them. A true partner in security."</p>
+                        <div>
+                            <p class="font-bold text-white">Sarah Jenkins</p>
+                            <p class="text-sm text-gray-400">CEO, Innovatech Solutions</p>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card glass-effect rounded-lg p-8 flex-shrink-0 w-full md:w-[48%] snap-start">
+                        <i class="fas fa-quote-left text-cyan-400 text-2xl mb-4"></i>
+                        <p class="text-gray-300 mb-6">"The cloud security assessment was an eye-opener. The team was professional, knowledgeable, and helped us lock down our AWS environment significantly. Highly recommended."</p>
+                        <div>
+                            <p class="font-bold text-white">David Chen</p>
+                            <p class="text-sm text-gray-400">CTO, DataFlow Analytics</p>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card glass-effect rounded-lg p-8 flex-shrink-0 w-full md:w-[48%] snap-start">
+                        <i class="fas fa-quote-left text-cyan-400 text-2xl mb-4"></i>
+                        <p class="text-gray-300 mb-6">"The red team exercise was realistic and challenging. It gave us invaluable insights into our detection and response capabilities. The Alpha Security team is top-notch."</p>
+                        <div>
+                            <p class="font-bold text-white">Mike Rodriguez</p>
+                            <p class="text-sm text-gray-400">CISO, Global Finance Corp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Secure Your Business Today</h2>
+                <p class="text-gray-400 mt-2">Reach out to our experts for a confidential consultation.</p>
+                <div class="w-24 h-1 bg-cyan-400 mx-auto mt-4"></div>
+            </div>
+            <div class="max-w-3xl mx-auto glass-effect rounded-lg p-8 md:p-12 fade-in">
+                <form id="contact-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <input type="text" placeholder="Your Name" class="w-full bg-gray-900/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition" required>
+                        <input type="email" placeholder="Your Email" class="w-full bg-gray-900/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition" required>
+                    </div>
+                    <div class="mb-6">
+                        <select class="w-full bg-gray-900/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition">
+                            <option>Select a Service</option>
+                            <option>Web Application Pentesting</option>
+                            <option>Network Vulnerability Assessment</option>
+                            <option>API Security Testing</option>
+                            <option>Mobile App Pentesting</option>
+                            <option>Cloud Security Assessment</option>
+                            <option>Red Teaming / Social Engineering</option>
+                            <option>Security Awareness Training</option>
+                        </select>
+                    </div>
+                    <div class="mb-6">
+                        <textarea placeholder="Your Message" rows="5" class="w-full bg-gray-900/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-cyan-500 text-white font-bold py-3 px-10 rounded-lg transition glow-button w-full md:w-auto">Send Message</button>
+                    </div>
+                </form>
+                <div id="form-message" class="text-center mt-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-30 py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-github fa-lg"></i></a>
+            </div>
+            <p>&copy; 2024 Alpha Security. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Particles.js Configuration ---
+            // This will now work because the script is loaded in the <head>
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                        "color": { "value": "#00bfff" },
+                        "shape": { "type": "circle" },
+                        "opacity": { "value": 0.5, "random": true },
+                        "size": { "value": 3, "random": true },
+                        "line_linked": { "enable": true, "distance": 150, "color": "#00bfff", "opacity": 0.4, "width": 1 },
+                        "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": { "enable": true, "mode": "repulse" },
+                            "onclick": { "enable": true, "mode": "push" },
+                            "resize": true
+                        },
+                        "modes": {
+                            "repulse": { "distance": 150, "duration": 0.4 },
+                            "push": { "particles_nb": 4 },
+                        }
+                    },
+                    "retina_detect": true
+                });
+            }
+
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // --- Header background on scroll ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('glass-effect');
+                } else {
+                    header.classList.remove('glass-effect');
+                }
+            });
+
+            // --- Typing Effect ---
+            const typingElement = document.getElementById('typing-effect');
+            const words = ["Fortress.", "Assets.", "Future."];
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function type() {
+                const currentWord = words[wordIndex];
+                if (isDeleting) {
+                    typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    setTimeout(() => isDeleting = true, 2000);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+                const typeSpeed = isDeleting ? 100 : 200;
+                setTimeout(type, typeSpeed);
+            }
+            type();
+
+            // --- Fade-in on scroll animation ---
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+            faders.forEach(fader => appearOnScroll.observe(fader));
+
+            // --- Testimonial Slider ---
+            const slider = document.getElementById('testimonial-slider');
+            const prevBtn = document.getElementById('prev-testimonial');
+            const nextBtn = document.getElementById('next-testimonial');
+            if (slider && prevBtn && nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const slideWidth = slider.querySelector('.testimonial-card').clientWidth + 32; // 32 is for the gap (gap-8 = 2rem = 32px)
+                    slider.scrollBy({ left: slideWidth, behavior: 'smooth' });
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    const slideWidth = slider.querySelector('.testimonial-card').clientWidth + 32;
+                    slider.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+                });
+            }
+
+            // --- Contact Form Submission ---
+            const contactForm = document.getElementById('contact-form');
+            const formMessage = document.getElementById('form-message');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                formMessage.textContent = 'Thank you for your message. We will get back to you shortly!';
+                formMessage.className = 'text-green-400';
+                contactForm.reset();
+                setTimeout(() => {
+                    formMessage.textContent = '';
+                }, 5000);
+            });
+        });
+    </script>
+
+</body>
+</html>
