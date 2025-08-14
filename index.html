@@ -8,7 +8,7 @@
         script-src 'self' https://cdn.tailwindcss.com https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js 'unsafe-inline'; 
         style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; 
         font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
-        connect-src 'self';
+        connect-src 'self'  https://script.google.com  https://script.googleusercontent.com;
         img-src 'self' https://placehold.co;
         frame-src 'self';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -310,13 +310,13 @@
                 <div class="w-24 h-1 bg-cyan-400 mx-auto mt-4"></div>
             </div>
             <div class="max-w-3xl mx-auto glass-effect rounded-lg p-8 md:p-12 fade-in">
-                <form id="contact-form">
+                <form id="contact-form" action="https://script.google.com/macros/s/AKfycbwBS90YT92J5m068qHIWV88Dad3qPXxS7NqMjK3T77dJOywTFTuTjzlduBnrYo-r0wB/exec" method="post">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <input type="text" placeholder="Your Name" class="w-full bg-gray-900/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition" required>
-                        <input type="email" placeholder="Your Email" class="w-full bg-gray-900/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition" required>
+                        <input type="text"  name="name"  placeholder="Your Name"   class="w-full bg-gray-900/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition" required>
+                        <input type="email" name="email" placeholder="Your Email" class="w-full bg-gray-900/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition" required>
                     </div>
                     <div class="mb-6">
-                        <select class="w-full bg-gray-900/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition">
+                        <select  name="service" class="w-full bg-gray-900/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition">
                             <option>Select a Service</option>
                             <option>Web Application Pentesting</option>
                             <option>Network Vulnerability Assessment</option>
@@ -327,7 +327,7 @@
                         </select>
                     </div>
                     <div class="mb-6">
-                        <textarea placeholder="Your Message" rows="5" class="w-full bg-gray-900/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition" required></textarea>
+                        <textarea name="message" placeholder="Your Message" rows="5" class="w-full bg-gray-900/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition" required></textarea>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="bg-cyan-500 text-white font-bold py-3 px-10 rounded-lg transition glow-button w-full md:w-auto">Send Message</button>
@@ -345,240 +345,11 @@
                 <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-linkedin-in fa-lg"></i></a>
                 <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-github fa-lg"></i></a>
             </div>
-            <p>&copy; 2024 Alpha Security. All Rights Reserved.</p>
+            <p>&copy; 2025 Alpha Security. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // --- Particles.js Configuration ---
-    if (typeof particlesJS !== 'undefined') {
-        particlesJS('particles-js', {
-            "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#00bfff" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.5, "random": true },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#00bfff", "opacity": 0.4, "width": 1 },
-                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": { "enable": true, "mode": "repulse" },
-                    "onclick": { "enable": true, "mode": "push" },
-                    "resize": true
-                },
-                "modes": {
-                    "repulse": { "distance": 150, "duration": 0.4 },
-                    "push": { "particles_nb": 4 },
-                }
-            },
-            "retina_detect": true
-        });
-    }
-
-    // --- Mobile Menu Toggle ---
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-    }
-
-    // --- Header background on scroll ---
-    const header = document.getElementById('header');
-    if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('glass-effect');
-            } else {
-                header.classList.remove('glass-effect');
-            }
-        });
-    }
-
-    // --- Typing Effect ---
-    const typingElement = document.getElementById('typing-effect');
-    if (typingElement) {
-        const words = ["Fortress.", "Assets.", "Future."];
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function type() {
-            const currentWord = words[wordIndex];
-            if (isDeleting) {
-                typingElement.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            if (!isDeleting && charIndex === currentWord.length) {
-                setTimeout(() => isDeleting = true, 2000);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-            }
-            const typeSpeed = isDeleting ? 100 : 200;
-            setTimeout(type, typeSpeed);
-        }
-        type();
-    }
-
-    // --- Fade-in on scroll animation ---
-    const faders = document.querySelectorAll('.fade-in');
-    const appearOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
-    };
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-        });
-    }, appearOptions);
-    faders.forEach(fader => appearOnScroll.observe(fader));
-
-    // --- Testimonial Slider ---
-    const slider = document.getElementById('testimonial-slider');
-    const prevBtn = document.getElementById('prev-testimonial');
-    const nextBtn = document.getElementById('next-testimonial');
-    if (slider && prevBtn && nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            const slideWidth = slider.querySelector('.testimonial-card').clientWidth + 32;
-            slider.scrollBy({ left: slideWidth, behavior: 'smooth' });
-        });
-
-        prevBtn.addEventListener('click', () => {
-            const slideWidth = slider.querySelector('.testimonial-card').clientWidth + 32;
-            slider.scrollBy({ left: -slideWidth, behavior: 'smooth' });
-        });
-    }
-
-    // --- Contact Form Submission ---
-    const contactForm = document.getElementById('contact-form');
-    const formMessage = document.getElementById('form-message');
-
-    if (contactForm) {
-        const disposableEmailDomains = [
-            '10minutemail.com', 'temp-mail.org', 'guerrillamail.com', 'mailinator.com', 'throwawaymail.com',
-            'getairmail.com', 'yopmail.com', 'maildrop.cc', 'tempmail.com', 'dispostable.com', 'trashmail.com'
-        ];
-
-        const sanitizeInput = (str) => {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#x27;',
-                "/": '&#x2F;',
-            };
-            const reg = /[&<>"'/]/ig;
-            return str.replace(reg, (match)=>(map[match]));
-        };
-
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Use specific 'name' attributes to select the correct fields
-            const nameInput = contactForm.querySelector('input[name="name"]');
-            const emailInput = contactForm.querySelector('input[name="email"]');
-            const messageInput = contactForm.querySelector('textarea[name="message"]');
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-
-            // Defensive check to ensure all form elements were found
-            if (!nameInput || !emailInput || !messageInput || !submitButton) {
-                console.error("One or more form fields could not be found.");
-                formMessage.textContent = 'A form error occurred. Please refresh and try again.';
-                formMessage.className = 'text-red-400';
-                return;
-            }
-
-            const name = nameInput.value.trim();
-            const email = emailInput.value.trim();
-            const message = messageInput.value.trim();
-
-            // 2. Stricter email validation
-            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            if (!emailRegex.test(email)) {
-                formMessage.textContent = 'Please enter a valid email address.';
-                formMessage.className = 'text-red-400';
-                return;
-            }
-
-            // 3. Block temporary emails
-            const domain = email.split('@')[1].toLowerCase();
-            if (disposableEmailDomains.includes(domain)) {
-                formMessage.textContent = 'Disposable email addresses are not permitted.';
-                formMessage.className = 'text-red-400';
-                return;
-            }
-            
-            // 4. Input length validation
-            if (name.length > 100 || name.length < 2) {
-                formMessage.textContent = 'Name must be between 2 and 100 characters.';
-                formMessage.className = 'text-red-400';
-                return;
-            }
-            if (message.length > 5000 || message.length < 10) {
-                formMessage.textContent = 'Message must be between 10 and 5000 characters.';
-                formMessage.className = 'text-red-400';
-                return;
-            }
-
-            // 5. Sanitize inputs to prevent XSS
-            const sanitizedName = sanitizeInput(name);
-            const sanitizedMessage = sanitizeInput(message);
-            
-            const formData = new FormData(contactForm);
-            formData.set('name', sanitizedName);
-            formData.set('message', sanitizedMessage);
-            const actionURL = contactForm.getAttribute('action');
-
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
-
-            fetch(actionURL, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.result === 'success') {
-                    formMessage.textContent = 'Thank you! Your message has been sent.';
-                    formMessage.className = 'text-green-400';
-                    contactForm.reset();
-                } else {
-                    formMessage.textContent = data.error || 'An unknown error occurred. Please try again.';
-                    formMessage.className = 'text-red-400';
-                }
-            })
-            .catch(error => {
-                console.error('Fetch Error:', error);
-                formMessage.textContent = 'A network error occurred. Please ensure your script URL is correct and check the browser console for more details.';
-                formMessage.className = 'text-red-400';
-            })
-            .finally(() => {
-                submitButton.disabled = false;
-                submitButton.textContent = 'Send Message';
-            });
-        });
-    }
-});
-
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
