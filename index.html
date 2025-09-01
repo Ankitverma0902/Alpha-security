@@ -8,7 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="supabase-url" content="https://jpjbaeczmoswffopmzub.supabase.co">
+    <meta name="supabase-key" content="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpwamJhZWN6bW9zd2Zmb3BtenViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUxMDk1NDgsImV4cCI6MjA3MDY4NTU0OH0.PDivESCxgL4l0aLBIC4c4Nhbh0s0oLCytitrDP6Apwk">
     <link rel="stylesheet" href="/assets/css/style.css">
+
 </head>
 <body class="antialiased">
 
@@ -126,10 +129,49 @@
         </section>
     </main>
 
+<!-- =======================================================================
+<!-- NEW SECTION: Animated Statistics                                        -->
+<!-- ======================================================================= -->
+<!-- <section id="stats" class="py-20">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12 fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-white">By the Numbers</h2>
+            <p class="text-gray-400 mt-2">Our track record of securing businesses speaks for itself.</p>
+            <div class="w-24 h-1 bg-cyan-400 mx-auto mt-4"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="glass-effect rounded-lg p-8 fade-in">
+                <h3 class="text-5xl font-extrabold text-cyan-400 mb-2" data-target="500">100+</h3>
+                <p class="text-xl font-semibold text-white">Assessments Completed</p>
+            </div>
+            <div class="glass-effect rounded-lg p-8 fade-in" style="transition-delay: 100ms;">
+                <h3 class="text-5xl font-extrabold text-cyan-400 mb-2" data-target="10000">300+</h3>
+                <p class="text-xl font-semibold text-white">Vulnerabilities Patched</p>
+            </div>
+            <div class="glass-effect rounded-lg p-8 fade-in" style="transition-delay: 200ms;">
+                <h3 class="text-5xl font-extrabold text-cyan-400 mb-2" data-target="250">80+</h3>
+                <p class="text-xl font-semibold text-white">Clients Secured</p>
+            </div>
+        </div>
+    </div>
+</section>  -->
+
     <!-- Footer -->
     <footer class="bg-black bg-opacity-30 pt-16 pb-8">
         <div class="container mx-auto px-6 text-gray-400">
+                <!-- Newsletter Section -->
+            <div class="mb-20 pb-16 border-b border-gray-800 text-center">
+                <h3 class="text-2xl font-bold text-white mb-2">Stay Ahead of the Threats</h3>
+                <p class="text-gray-400 mb-6 max-w-xl mx-auto">Subscribe to our newsletter for the latest cybersecurity insights, threat intelligence, and company news.</p>
+                <form id="newsletter-form" class="flex flex-col sm:flex-row justify-center max-w-lg mx-auto">
+                    <input type="email" name="email" placeholder="Enter your email" class="w-full sm:w-2/3 bg-gray-900/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition mb-4 sm:mb-0 sm:mr-4" required>
+                    <button type="submit" class="bg-cyan-500 text-white font-bold py-3 px-6 rounded-lg transition glow-button">Subscribe</button>
+                </form>
+                <div id="newsletter-message" class="text-center mt-4 h-4"></div>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                
                 <!-- About Column -->
                 <div class="col-span-1 md:col-span-2">
                     <h4 class="text-white text-lg font-semibold mb-4">Alpha Security</h4>
@@ -168,7 +210,23 @@
         </div>
     </footer>
 
+       <!-- Cookie Consent Banner
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900/80 backdrop-blur-sm border-t border-gray-700 p-4 z-[1000] transform translate-y-full transition-transform duration-500">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-300 text-center md:text-left">
+                We use cookies to enhance your experience and analyze site traffic.  class="text-cyan-400 underline hover:text-cyan-300">Privacy Policy</a>.
+            </p>
+            <div class="flex items-center gap-4 flex-shrink-0">
+                <button id="decline-cookies" class="text-sm text-gray-400 hover:text-white transition">Decline</button>
+                <button id="accept-cookies" class="bg-cyan-500 text-white font-bold py-2 px-5 rounded-lg transition glow-button text-sm">Accept</button>
+            </div>
+        </div>
+    </div> -->
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="/assets/js/script.js"></script>
+
+ 
 </body>
 </html>

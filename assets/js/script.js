@@ -27,6 +27,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+  // --- Supabase Client Initialization (Global) ---
+    // Use a unique variable name to avoid conflicts with browser extensions.
+    let supabaseClient; 
+    const supabaseUrlMeta = document.querySelector('meta[name="supabase-url"]');
+    const supabaseKeyMeta = document.querySelector('meta[name="supabase-key"]');
+
+    if (supabaseUrlMeta && supabaseKeyMeta) {
+        const SUPABASE_URL = supabaseUrlMeta.getAttribute('content');
+        const SUPABASE_KEY = supabaseKeyMeta.getAttribute('content');
+        
+        // Ensure the Supabase library is loaded before creating a client.
+        if (window.supabase) {
+            const { createClient } = window.supabase;
+            supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+            console.log("Supabase client initialized successfully.");
+        } else {
+            console.error("Supabase JS library not found. Make sure the script tag is included in your HTML.");
+        }
+    } else {
+        console.log("Supabase meta tags not found on this page. Forms will not be initialized.");
+    }
+
+
     // --- Mobile Menu Toggle ---
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -108,6 +131,113 @@ document.addEventListener('DOMContentLoaded', () => {
             slider.scrollBy({ left: -slideWidth, behavior: 'smooth' });
         });
     }
+
+//     // =======================================================================
+// // NEW: Animated Statistics Counter
+// // =======================================================================
+// const statsSection = document.getElementById('stats');
+// if (statsSection) {
+//     const counters = statsSection.querySelectorAll('[data-target]');
+//     const speed = 200; // The lower the number, the faster the count
+
+//     const animateCounter = (counter) => {
+//         const target = +counter.getAttribute('data-target');
+//         const updateCount = () => {
+//             const count = +counter.innerText;
+//             const increment = target / speed;
+
+//             if (count < target) {
+//                 counter.innerText = Math.ceil(count + increment);
+//                 setTimeout(updateCount, 1);
+//             } else {
+//                 counter.innerText = target.toLocaleString(); // Add commas for thousands
+//             }
+//         };
+//         updateCount();
+//     };
+
+//     const observer = new IntersectionObserver((entries, observer) => {
+//         entries.forEach(entry => {
+//             if (entry.isIntersecting) {
+//                 counters.forEach(counter => {
+//                     animateCounter(counter);
+//                 });
+//                 observer.unobserve(statsSection); // Stop observing once animated
+//             }
+//         });
+//     }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+//     observer.observe(statsSection);
+// }
+
+ const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm && supabaseClient) {
+        const newsletterMessage = document.getElementById('newsletter-message');
+        newsletterForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const emailInput = newsletterForm.querySelector('input[name="email"]');
+            const submitButton = newsletterForm.querySelector('button[type="submit"]');
+            const email = emailInput.value.trim();
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Subscribing...';
+            newsletterMessage.textContent = '';
+
+            try {
+                // Using the new, safe variable name
+                const { error } = await supabaseClient.from('subscribers').insert([{ email: email }]);
+                if (error) throw error;
+                newsletterMessage.className = 'text-green-400';
+                newsletterMessage.textContent = 'Thank you for subscribing!';
+                newsletterForm.reset();
+                  setTimeout(() => {
+                    location.reload();
+                }, 1000);
+                
+            } catch (error) {
+                console.error('Newsletter Error:', error.message);
+                newsletterMessage.className = 'text-red-400';
+                if (error.code === '23505') { // Postgres unique violation
+                    newsletterMessage.textContent = 'This email is already subscribed.';
+                } else {
+                    newsletterMessage.textContent = 'An error occurred. Please try again.';
+                }
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Subscribe';
+            }
+        });
+    }
+
+    
+    //   // =======================================================================
+    // // UPDATED: Cookie Consent Banner Logic
+    // // =======================================================================
+    // const cookieBanner = document.getElementById('cookie-banner');
+    // const acceptCookiesButton = document.getElementById('accept-cookies');
+    // const declineCookiesButton = document.getElementById('decline-cookies');
+
+    // if (cookieBanner && acceptCookiesButton && declineCookiesButton) {
+    //     // Check if the user has already made a choice
+    //     if (!localStorage.getItem('cookie_consent')) {
+    //         // Show the banner if they haven't
+    //         setTimeout(() => {
+    //             cookieBanner.classList.remove('translate-y-full');
+    //         }, 1000); // Show after 1 second
+    //     }
+
+    //     const handleConsent = (consent) => {
+    //          // When a choice is made, hide the banner
+    //         cookieBanner.classList.add('translate-y-full');
+            
+    //         // Set a flag in local storage to remember the choice
+    //         localStorage.setItem('cookie_consent', consent);
+    //     }
+
+    //     acceptCookiesButton.addEventListener('click', () => handleConsent('accepted'));
+    //     declineCookiesButton.addEventListener('click', () => handleConsent('declined'));
+    // }
+
 
    // --- Contact Form Submission (Supabase) ---
 const contactForm = document.getElementById('contact-form');
